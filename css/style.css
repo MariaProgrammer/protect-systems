@@ -1,0 +1,2287 @@
+/* ==================== VARIABLES ==================== */
+:root {
+  /* Fonts */
+  --font-family: "Manrope", sans-serif;
+  --second-family: "Bebas Neue", sans-serif;
+
+  /* Colors */
+  --color-dark: #242830;
+  --color-red: #b02a1f;
+  --color-red-hover: #961308;
+  --color-red-active: #b02a1f;
+  --color-orange: #ff9000;
+  --color-white: #ffffff;
+  --color-gray: #f6f6f6;
+  --color-text: #000;
+  --color-text-light: #7e7f84;
+  --color-border: #cdcecf;
+
+  /* border */
+  --border-4: 4px;
+  --border-8: 8px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease-in-out;
+}
+
+/* ==================== RESET & BASE ==================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.page {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-white);
+  overflow-x: hidden;
+}
+
+body.body--modal-open {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* ==================== REUSABLE CLASSES ==================== */
+.container {
+  max-width: 1170px; /* 1140px + 15px padding on each side */
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid var(--color-red-hover);
+  background-color: var(--color-white);
+  border-radius: var(--border-4);
+  color: var(--color-red-hover);
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+    color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.btn:hover {
+  background-color: var(--color-red-hover);
+  color: var(--color-white);
+}
+
+.btn:active {
+  background-color: var(--color-red-active);
+  border-color: var(--color-red-active);
+  color: var(--color-white);
+}
+
+.btn:disabled {
+  background-color: var(--color-gray);
+  border-color: var(--color-border);
+  color: var(--color-text-light);
+  cursor: not-allowed;
+}
+
+.btn--secondary {
+  background-color: var(--color-orange);
+  border-color: var(--color-orange);
+  color: var(--color-white);
+}
+
+.btn--secondary:hover {
+  background-color: #d88100;
+  border-color: #d88100;
+}
+
+/* ==================== HEADER ==================== */
+
+/* HEADER TOP (Dark bar for Desktop) */
+
+/* ==================== HEADER ==================== */
+
+/* Общие стили для хедера */
+.header {
+  position: relative;
+  z-index: 100;
+  background-color: var(--color-white);
+}
+/* HEADER TOP (Темная полоса для десктопа) */
+
+.header__top {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: 10px 0;
+  font-size: 14px;
+}
+.header__top-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__top-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.header__top-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header__address {
+  font-style: normal;
+  text-transform: uppercase;
+  line-height: 109%;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-item__icon {
+  flex-shrink: 0;
+}
+
+.contact-item__text {
+  font-style: normal;
+  line-height: 1.4;
+}
+.contact-item a.contact-item__text {
+  transition: color var(--transition-fast);
+}
+.contact-item a.contact-item__text:hover {
+  color: var(--color-orange);
+}
+
+/* HEADER MOBILE BAR (Темная полоса для мобильных) */
+.header__mobile-bar {
+  display: none;
+  background-color: var(--color-dark);
+  padding: 10px 0;
+}
+
+.header__mobile-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__mobile-phone svg path {
+  fill: var(--color-white);
+}
+
+/* HEADER MAIN (Белый блок с лого, поиском и контактами) */
+.header__main {
+  padding: 25px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__main-inner,
+.header__main-top,
+.header__main-bottom {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header__main-inner {
+  justify-content: space-between;
+}
+
+.header__main-top {
+  flex-grow: 1; /* Позволяет блоку растягиваться */
+}
+.header__main-bottom {
+  flex-shrink: 0; /* Запрещает блоку сжиматься */
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.search-form {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+}
+
+.search-form__input {
+  width: 100%;
+  height: 48px;
+  padding: 10px 50px 10px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: var(--font-family);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+.search-form__input:focus {
+  border-color: var(--color-red);
+}
+
+.search-form__btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.phone-block__number {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-dark);
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+.phone-block__number:hover {
+  color: var(--color-red);
+}
+
+.phone-block__desc {
+  font-size: 14px;
+  color: var(--color-text-light);
+  text-align: right;
+}
+
+.socials {
+  display: flex;
+  gap: 8px;
+}
+
+.socials__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: opacity var(--transition-fast);
+}
+.socials__link:hover {
+  opacity: 0.85;
+}
+.socials__link--tg {
+  background-color: #24a1de;
+}
+.socials__link--wa {
+  background-color: #25d366;
+}
+
+/* NAV (Десктопная навигация) */
+.nav {
+  background-color: var(--color-red);
+}
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.nav__link {
+  display: block;
+  padding: 20px 25px;
+  font-family: var(--second-family);
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  transition: background-color var(--transition-fast);
+}
+.nav__link:hover {
+  background-color: #8e1a1a;
+}
+.nav__item.is-current > .nav__link {
+  background-color: #8e1a1a;
+}
+.nav__item.is-highlighted > .nav__link {
+  color: var(--color-orange);
+}
+
+/* ==================== BURGER & MOBILE NAV (ИСПРАВЛЕННЫЙ) ==================== */
+
+/* Кнопка-бургер */
+.burger {
+  display: none; /* Скрыт на десктопе */
+  position: relative; /* В мобильной панели позиционируется относительно потока */
+  width: 30px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1002; /* z-index выше чем у mobile-nav */
+}
+
+/* Когда меню открыто, делаем бургер фиксированным */
+.burger.is-active {
+  position: fixed;
+  right: 15px; /* Отступ от правого края, равный padding'у контейнера */
+  top: 20px; /* Отступ сверху, чтобы было красиво */
+}
+
+.burger__line,
+.burger::before,
+.burger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background-color: var(--color-white);
+  border-radius: 2px;
+  transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease,
+    opacity 0.3s ease;
+}
+.burger__line {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.burger::before {
+  top: 0;
+}
+.burger::after {
+  bottom: 0;
+}
+
+.burger.is-active .burger__line {
+  opacity: 0;
+}
+.burger.is-active::before {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+.burger.is-active::after {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+
+/* Выезжающее меню */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  max-width: 320px;
+  height: 100vh;
+  z-index: 1001; /* z-index ниже чем у активного бургера */
+  background-color: var(--color-dark);
+  padding: 50px 0 40px;
+  overflow-y: auto;
+  transition: right 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+.mobile-nav.is-open {
+  right: 0;
+}
+
+.mobile-nav .nav__list {
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--color-red-hover);
+}
+.mobile-nav .nav__link {
+  padding: 15px 10px;
+  font-size: 24px;
+}
+.mobile-nav .nav__link:hover {
+  background-color: transparent;
+  color: var(--color-orange);
+}
+
+.mobile-nav__contacts {
+  margin-top: auto;
+
+  padding: 30px 20px 0 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 16px;
+  color: var(--color-white);
+}
+.mobile-nav__contacts a:hover {
+  color: var(--color-orange);
+}
+
+.burger-close {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  right: 30px;
+  top: 10px;
+  z-index: 2000;
+}
+.burger__line,
+.burger-close::before,
+.burger-close::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background-color: var(--color-white);
+  border-radius: 2px;
+  transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease,
+    opacity 0.3s ease;
+}
+.burger__line {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.burger-close::before {
+  top: 0;
+}
+.burger-close::after {
+  bottom: 0;
+}
+.burger-close.is-active .burger__line {
+  opacity: 0;
+}
+.burger-close.is-active::before {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+.burger-close.is-active::after {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+
+/* Оверлей для затемнения страницы */
+.page-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* Самый нижний z-index */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.page--lock .page-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* АДАПТИВНОСТЬ */
+
+/* Планшет */
+@media (max-width: 1200px) {
+  .header__main-inner {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .header__main-top,
+  .header__main-bottom {
+    width: 100%;
+  }
+  .header__main-top {
+    justify-content: space-between;
+  }
+  .header__main-bottom {
+    justify-content: center;
+  }
+  .phone-block__desc {
+    text-align: left;
+  }
+}
+
+/* Маленький планшет / большой телефон */
+@media (max-width: 768px) {
+  .header__top,
+  .nav {
+    display: none;
+  }
+  .header__mobile-bar {
+    display: block;
+  }
+  .burger {
+    display: block;
+  }
+  .logo {
+    flex-shrink: 1;
+}
+.logo svg {
+  width: 100%;
+}
+  .header__main-top {    
+    align-items: center;
+    gap: 15px;
+  }
+  .header__main-bottom {
+    
+    align-items: center;
+  }
+  .phone-block__number {
+    font-size: 20px;
+  }
+  .phone-block__desc {
+    text-align: center;
+  }
+  .header__main-bottom {
+    gap: 10px;
+  }
+}
+
+/* MAIN NAVIGATION */
+/* .nav {
+  background-color: var(--color-red);
+}
+
+.nav__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav__link {
+  display: block;
+  padding: 20px 25px;
+  font-family: var(--second-family);
+  font-size: 20px;
+  color: var(--color-white);
+  text-transform: uppercase;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.nav__link:hover {
+  background-color: #8e1a1a;
+} */
+/* Модификатор для текущего пункта */
+/* .nav__item.is-current .nav__link {
+  background-color: #8e1a1a;
+} */
+/* Модификатор для выделенного пункта */
+/* .nav__item.is-highlighted .nav__link {
+  color: var(--color-orange);
+} */
+
+/* BURGER & MOBILE NAV */
+.burger {
+  display: none; /* Скрыт на десктопе */
+  position: relative;
+  width: 30px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001; /* Выше оверлея модалки, но ниже самой модалки */
+}
+
+.burger__line {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-white);
+  transition: transform 0.3s ease-in-out, top 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+}
+
+.burger::before,
+.burger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+/* ==================== MEGA MENU (DESKTOP FIRST) ==================== */
+
+/* Делаем контейнер навигации относительным, чтобы позиционировать меню */
+.nav {
+  position: relative;
+  background-color: var(--color-red);
+}
+.nav__container {
+  position: relative;
+}
+
+.nav__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav__link {
+  display: block;
+  padding: 20px 25px;
+  font-family: var(--second-family);
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  transition: background-color var(--transition-fast);
+}
+
+/* Стили для активного (при наведении) пункта */
+.nav__item.is-active > .nav__link {
+  background-color: #8e1a1a; /* Более темный красный */
+}
+
+/* --- Стили для выпадающего меню --- */
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #8e1a1a; /* Темно-красный фон */
+  z-index: -1; /* Прячем под всем */
+  
+  /* Начальное состояние (скрыто) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+/* Состояние при открытии */
+.dropdown-menu.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  z-index: 99; /* Показываем над всем */
+}
+
+.dropdown-menu__container {
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+/* Левая колонка (красная) */
+.dropdown-menu__left {
+  flex: 0 0 280px; /* Фиксированная ширина */
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-menu__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  color: var(--color-white);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color var(--transition-fast);
+}
+.dropdown-menu__item:hover,
+.dropdown-menu__item.is-active {
+  background-color: var(--color-red);
+}
+
+.dropdown-menu__item-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+.dropdown-menu__item-text svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+.dropdown-menu__item-arrow svg {
+    width: 8px;
+    height: 12px;
+    transition: transform 0.3s ease;
+}
+.dropdown-menu__item.is-active .dropdown-menu__item-arrow svg {
+    transform: rotate(180deg);
+}
+
+/* Правая колонка (белая) */
+.dropdown-menu__right {
+  flex-grow: 1;
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  padding: 20px 30px;
+  min-height: 300px; /* Минимальная высота, чтобы не "прыгало" */
+  
+  /* Плавный выезд */
+  position: relative;
+  overflow: hidden;
+}
+
+.submenu {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    width: calc(100% - 60px);
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.submenu.is-active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.submenu__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.submenu__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.submenu__link {
+    color: var(--color-text);
+    text-decoration: none;
+}
+.submenu__link:hover {
+    color: var(--color-red);
+}
+
+/* ==================== HERO SLIDER  ==================== */
+
+/* 1. Делаем саму секцию .hero полноэкранной */
+.hero {
+  position: relative; /* Необходимо для позиционирования пагинации */
+  width: 100vw; /* Задаем ширину равной 100% ширины окна просмотра */
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw; /* Эти два правила центрируют блок, даже если он внутри контейнера */
+  margin-right: -50vw;
+  color: var(--color-white);
+}
+
+.hero__slide {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+/* 3. Оставляем контент внутри слайда в рамках стандартного контейнера */
+/* Этот класс нужно добавить в HTML, если его еще нет */
+.hero__container {
+  width: 100%;
+  height: auto;
+  padding: 65px 0 35px;
+  position: relative; /* Чтобы контент был выше возможного оверлея на фоне */
+  z-index: 2;
+  position: relative;
+}
+
+.hero__content {
+  background: url("../img/hero/hero__bg.png"), var(--color-gray);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.hero__content-box {
+  display: flex;
+}
+
+.hero__inner-left {
+  width: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px 0;
+}
+.hero__inner-right {
+  flex: 1 1 auto;
+  width: 100%;
+  position: relative;
+}
+.hero__img {
+  position: absolute;
+  right: 0;
+  bottom: -30px;
+  z-index: 100;
+  max-width: 892px;
+  height: auto;
+}
+.hero__img img {
+  display: block;
+  max-height: 360px;
+  width: auto;
+  object-fit: contain;
+}
+.hero__img-mob {
+  display: none;
+}
+.hero__title {
+  color: #000;
+  font-family: var(--second-family);
+  font-weight: 300;
+  font-size: 38px;
+  line-height: 109%;
+  text-transform: uppercase;
+}
+.hero__descr {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero__subtitle {
+  font-size: 16px;
+  color: var(--color-red);
+  text-transform: lowercase;
+}
+.hero__btn {
+  align-self: flex-start;
+}
+
+/* 4. Позиционируем пагинацию поверх слайдера */
+.hero .swiper-pagination {
+  position: absolute; /* Вырываем из потока */
+  bottom: 0; /* Располагаем снизу с отступом 20px */
+  left: 50%; /* Центрируем по горизонтали */
+  transform: translateX(-50%);
+  width: auto; /* Ширина по содержимому */
+  z-index: 10; /* Убеждаемся, что пагинация выше слайдов */
+}
+
+.hero .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-red-hover);
+  opacity: 1 !important;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.hero .swiper-pagination-bullet-active {
+  background-color: var(--color-orange);
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background-color: var(--color-orange);
+  opacity: 1;
+}
+
+/* ==================== MODAL ==================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-fast), visibility var(--transition-fast);
+}
+
+.modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.modal__content {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 500px;
+  padding: 40px;
+  background-color: var(--color-white);
+  border-radius: 8px;
+  transform: scale(0.9);
+  transition: transform var(--transition-fast);
+}
+
+.modal.is-open .modal__content {
+  transform: scale(1);
+}
+
+.modal__close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--color-text-light);
+}
+
+/* ... Стили для формы внутри модалки ... */
+.form__input.is-invalid {
+  border-color: var(--color-red);
+}
+
+/* ==================== MODAL & FORM STYLES ==================== */
+
+/* Заголовок модального окна */
+.modal__title {
+  font-family: var(--second-family); /* Используем шрифт для заголовков */
+  font-size: 36px;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  margin-bottom: 8px; /* Отступ вниз до подзаголовка */
+}
+
+/* Подзаголовок */
+.modal__subtitle {
+  text-align: center;
+  color: var(--color-text-light); /* Светло-серый цвет текста */
+  margin-bottom: 24px; /* Отступ вниз до формы */
+}
+
+/* Общие стили для формы */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Расстояние между полями и кнопкой */
+}
+
+/* Группа для каждого поля (input/textarea) */
+.form__group {
+  width: 100%;
+}
+
+/* Стили для всех полей ввода (input и textarea) */
+.form__input {
+  width: 100%;
+  height: 48px;
+  padding: 12px 0;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: var(--font-family);
+  outline: none;
+  background-color: #f9f9f9; /* Светлый фон для полей */
+  transition: border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/* Стили для поля при фокусе */
+.form__input:focus {
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 2px rgba(168, 36, 36, 0.2);
+}
+
+/* Отдельные стили для многострочного поля textarea */
+.form__input--textarea {
+  height: 120px; /* Увеличиваем высоту */
+  resize: vertical; /* Разрешаем пользователю менять высоту */
+  min-height: 80px; /* Минимальная высота */
+}
+
+/* Стили для кнопки отправки формы */
+.form__btn {
+  width: 100%; /* Кнопка на всю ширину */
+  margin-top: 8px; /* Небольшой дополнительный отступ сверху */
+}
+
+/* --- Существующие стили для самого окна (для полноты картины) --- */
+.modal__content {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 500px;
+  padding: 40px;
+  background-color: var(--color-white);
+  border-radius: 8px;
+  transform: scale(0.9);
+  transition: transform var(--transition-fast);
+}
+
+.modal.is-open .modal__content {
+  transform: scale(1);
+}
+
+.modal__close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-text-light);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+.modal__close-btn:hover {
+  color: var(--color-dark);
+  transform: rotate(90deg);
+}
+
+.form__input.is-invalid {
+  border-color: var(--color-red);
+}
+
+/* ==================== SERVICES SECTION (DESKTOP FIRST) ==================== */
+.services {
+  padding: 30px 0; /* Отступы для секции сверху и снизу */
+  background-color: #fff; /* Фон всей секции, как на макете */
+}
+
+/* Общий класс для заголовков секций */
+.section-title {
+  font-family: var(--font-family);
+  font-size: 34px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: var(--color-dark);
+}
+
+/* СЕТКА (GRID) ДЛЯ КАРТОЧЕК */
+.services__grid {
+  display: grid;
+  /* Desktop First: по умолчанию 3 колонки */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px; /* Расстояние между карточками */
+}
+
+/* СТИЛИ КАРТОЧКИ */
+.service-card {
+  background-color: #ffffff; /* Карточки белые на сером фоне секции */
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Блок с картинкой */
+.service-card__image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 30px; */
+  min-height: 220px;
+}
+/* Модификаторы для цвета фона */
+.service-card__image-wrapper--red {
+  background-color: var(--color-red);
+}
+.service-card__image-wrapper--orange {
+  background-color: var(--color-orange);
+}
+.service-card__image-wrapper--gray {
+  background: url('../img/services/tubes.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+} 
+
+.service-card__image {
+  height: 100%;
+  width: auto;
+}
+.img-small {
+  height: auto;
+}
+
+/* Контентная часть карточки */
+.service-card__content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Занимает все доступное место по высоте */
+}
+
+.service-card__title {
+  font-family: var(--second-family);
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  color: var(--color-dark);
+}
+
+.service-card__text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-light);
+  margin-bottom: 24px;
+}
+
+/* Блок с тегами */
+.service-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  margin-bottom: 24px;
+}
+
+.service-card__tag {
+  font-size: 12px;
+  padding: 4px 12px;
+  background-color: #e0e0e0;
+  color: #616161;
+  border-radius: 100px;
+}
+
+/* Кнопка в карточке */
+.service-card__btn {
+  margin-top: auto; /* Прижимает кнопку к низу */
+  align-self: flex-start;
+}
+
+/* ==================== FEATURED SERVICES SECTION (DESKTOP FIRST) ==================== */
+
+.featured-services {
+  padding: 40px 0;
+  background-color: #fff;
+}
+
+/* Контейнер для карточек (Flexbox) */
+.featured-services__list {
+  display: flex;
+  /* Desktop First: по умолчанию элементы в ряд */
+  flex-direction: row;
+  gap: 6px; /* Расстояние между карточками */
+  align-items: stretch; /* Растягивает карточки на одинаковую высоту */
+}
+
+/* Стили для карточки. Они идентичны предыдущему блоку, что хорошо. */
+.service-card {
+  /* Каждая карточка занимает равное пространство */
+  flex: 1 1 0;
+  min-width: 0; /* Важное правило для flex-элементов, чтобы они могли сжиматься */
+
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.service-card__image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 30px; */
+  min-height: 220px;
+}
+.service-card__image-wrapper--red {
+  background-color: var(--color-red);
+}
+.service-card__image-wrapper--orange {
+  background-color: var(--color-orange);
+}
+
+.service-card__image {
+  
+  width: auto;
+}
+
+.service-card__content {
+  background: var(--color-gray);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Занимает все доступное место, чтобы прижать кнопку вниз */
+}
+
+.service-card__title {
+  font-family: var(--second-family);
+  font-size: 32px;
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin-bottom: 10px;
+  color: var(--color-dark);
+}
+
+.service-card__text {
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--color-dark);
+  margin-bottom: 18px;
+}
+
+/* Блок с тегами (виден на десктопе по умолчанию) */
+.service-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.service-card__tag {
+  font-size: 12px;
+  padding: 4px 12px;
+  background-color: #e0e0e0;
+  color: #616161;
+  border-radius: 100px;
+}
+
+.service-card__btn {
+  margin-top: auto; /* Прижимает кнопку к низу */
+  align-self: flex-start;
+}
+
+/* ==================== ABOUT COMPANY SECTION (DESKTOP FIRST) ==================== */
+
+.about-company {
+  padding: 30px 0;
+  background-color: var(--color-white);
+}
+
+.about-company__header {
+  text-align: center;
+}
+
+.about-company__subtitle {
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-text);
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Используем общий класс .section-title, если он у вас есть */
+.about-company__title {
+  margin-bottom: 4px;
+}
+
+.about-company__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px; /* Расстояние между двумя строками */
+}
+
+.about-company__row {
+  display: flex;
+  /* Desktop First: элементы в ряд */
+  flex-direction: row;
+
+  gap: 40px; /* Большой отступ между текстом и картинкой */
+}
+
+/* Модификатор для второй строки, который меняет порядок колонок */
+.about-company__row--reverse {
+  flex-direction: row-reverse;
+  align-items: stretch;
+}
+
+.about-company__text-content,
+.about-company__image-wrapper {
+  flex: 1 1 50%; /* Каждая колонка занимает 50% ширины */
+  min-width: 0; /* Для корректного сжатия flex-элементов */
+}
+
+.about-company__text-content p {
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-text);
+}
+
+.about-company__text-content p:not(:last-child) {
+  margin-bottom: 1.2em; /* Отступ между параграфами */
+}
+
+.about-company__image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.about-company__cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ==================== FEATURES SECTION (DESKTOP FIRST) ==================== */
+
+.features {
+  padding: 20px 0 40px;
+  background-color: #f6f6f6; /* Светло-серый фон секции */
+}
+
+.features__grid {
+  display: grid;
+  /* Desktop First: 3 колонки */
+  grid-template-columns: repeat(3, 1fr);
+  /* Отступы между колонками и рядами */
+  gap: 60px 40px; /* 50px по вертикали, 30px по горизонтали */
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-item__icon-wrapper {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  background-color: var(--color-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+/* Здесь можно стилизовать SVG, если нужно */
+.feature-item__icon-wrapper svg {
+  width: 40px;
+  height: 40px;
+}
+.feature-item__icon-wrapper svg path {
+  fill: var(--color-orange); /* Цвет иконки */
+}
+
+.feature-item__title {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: var(--color-dark);
+}
+
+.feature-item__text {
+  font-size: 16px;
+  line-height: 1.1;
+  color: var(--color-dark);
+}
+
+/* ==================== CTA BANNER SECTION (DESKTOP FIRST) ==================== */
+
+.cta-banner-section {
+  padding: 20px 0 40px;
+  background-color: #f6f6f6; /* Фон секции */
+}
+
+.cta-banner {
+  display: flex;
+  gap: 50px;
+  position: relative; /* Для позиционирования псевдо-элементов и картинки */
+  overflow: hidden; /* Скрывает все, что выходит за рамки, включая увеличенную картинку */
+  border-radius: 8px;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  text-decoration: none;
+  height: 212px;
+  align-items: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.cta-banner:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Анимация "приближения" картинки при наведении на баннер */
+.cta-banner:hover .cta-banner__image {
+  transform: scale(1.05);
+}
+
+.cta-banner__image-wrapper {
+  /* position: absolute;
+  top: 0;
+  left: 0;   */
+
+  max-width: 100%;
+  height: 100%;
+}
+
+.cta-banner__image {
+  width: auto;
+  height: 100%;
+  object-fit: cover; /* Картинка заполняет блок, сохраняя пропорции */
+  transition: transform 0.4s ease-out; /* Плавность для анимации */
+}
+
+.cta-banner__content {
+  display: flex;
+  align-items: center;
+  /* Сдвигаем контент вправо, чтобы он не заезжал на картинку */
+
+  gap: 50px;
+}
+
+.cta-banner__highlight {
+  flex-shrink: 0; /* Запрещаем блоку сжиматься */
+  text-align: center;
+}
+
+.cta-banner__highlight-main {
+  display: block;
+  font-family: var(--second-family);
+  font-size: 64px;
+  line-height: 1;
+  color: var(--color-orange);
+}
+
+.cta-banner__highlight-sub {
+  display: block;
+  font-family: var(--second-family);
+  font-size: 36px;
+  line-height: 1;
+  color: var(--color-orange);
+  text-transform: uppercase;
+}
+
+.cta-banner__text {
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1;
+}
+/* ==================== PARTNERS SECTION (DESKTOP FIRST) ==================== */
+
+.partners {
+  padding: 30px 0 40px;
+  background-color: var(--color-white); /* Белый фон секции */
+}
+
+.partners__title {
+  text-align: left; /* На всех макетах заголовок слева */
+}
+
+.partners__grid {
+  display: grid;
+  justify-content: center;
+  /* Desktop First: 6 колонок в ряд */
+  grid-template-columns: repeat(auto-fit, 160px);
+  gap: 35px; /* Отступ между логотипами */
+}
+
+.partner-logo {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 160px; /* Фиксированная высота ячейки */
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.partner-logo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.partner-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Логотип вписывается в ячейку, сохраняя пропорции */
+  filter: grayscale(100%); /* Делаем логотипы черно-белыми */
+  opacity: 0.7;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* При наведении на ссылку логотип становится цветным */
+.partner-logo:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* ==================== LICENSES SECTION (ЦЕНТРИРОВАННЫЙ) ==================== */
+
+/* ==================== LICENSES SECTION (ИСПРАВЛЕННЫЙ ЦЕНТРИРОВАННЫЙ) ==================== */
+
+.licenses {
+  padding: 30px 0;
+  background-color: #f6f6f6;
+}
+
+.licenses__title {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+/* Контейнер слайдера */
+.licenses-slider {
+  /* overflow: visible; */ /* Убираем это */
+
+  /* ГЛАВНОЕ ИЗМЕНЕНИЕ: Ограничиваем ширину и центрируем */
+  max-width: 1200px; /* Ширина, достаточная для ~3 слайдов по 360px + отступы */
+  margin: 0 auto; /* Центрируем сам слайдер */
+}
+
+/* Высоту wrapper можно убрать, Swiper рассчитает ее сам */
+/* .licenses-slider .swiper-wrapper {
+  height: 467px !important;
+} */
+
+.licenses-slide {
+  /* Ширину Swiper рассчитает сам из slidesPerView: 3 */
+  /* width: 360px; */ /* Убираем фиксированную ширину */
+  width: 360px;
+  height: auto;
+
+  perspective: 1000px;
+  transition: transform 0.4s ease;
+}
+
+.licenses-slide img {
+  display: block;
+  width: auto; /* Картинка 100% от ширины слайда */
+  object-fit: contain;
+  max-height: 467px;
+  border-radius: 8px;
+  transform: rotateY(-7deg) rotateX(3deg);
+  filter: drop-shadow(5px 10px 15px rgba(0, 0, 0, 0.2));
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Стили для :hover и .swiper-slide-active остаются без изменений */
+.licenses-slide:hover img {
+  transform: rotateY(0) rotateX(0) scale(1.05);
+  filter: drop-shadow(0px 20px 25px rgba(0, 0, 0, 0.25));
+}
+
+/* ==================== CTA FORM SECTION (DESKTOP FIRST) ==================== */
+
+.cta-form-section {
+  padding: 80px 0;
+  background-color: var(--color-white);
+}
+
+.cta-form__grid {
+  display: grid;
+  /* Desktop First: 2 колонки, левая чуть больше правой */
+  grid-template-columns: 1.2fr 1fr;
+  position: relative; /* Для абсолютного позиционирования картинки */
+}
+
+/* Левая колонка */
+.cta-form__info {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 0;
+
+  background: url("../img/form/form__bg.png"), var(--color-red);
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: auto 100%;
+  color: var(--color-white);
+  padding: 74px 40px;
+  /* padding-right: 15%; Освобождаем место для картинки */
+}
+
+.cta-form__title {
+  font-family: var(--second-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 90%;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.cta-form__perks {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.cta-form__perk-item:first-of-type {
+  max-width: 50%;
+}
+.cta-form__perk-item:last-of-type {
+  max-width: 60%;
+}
+
+/* Правая колонка */
+.cta-form__form-wrapper {
+  border-top-left-radius: 0;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 8px;
+  background-color: #f6f6f6;
+  padding-left: 30%; /* Освобождаем место для картинки */
+  padding-top: 56px;
+  padding-bottom: 56px;
+  padding-right: 20px;
+}
+
+.cta-form__form .form__group {
+  margin-bottom: 30px;
+}
+
+.cta-form__form .form__label {
+  display: block;
+  font-size: 16px;
+  color: var(--color-dark);
+}
+
+/* Используем уже существующие стили для полей, но с небольшими изменениями */
+.cta-form__form .form__input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #c4c4c4; /* Только нижняя граница */
+  border-radius: 0;
+  height: auto;
+}
+
+.cta-form__form .form__input:focus {
+  border-bottom-color: var(--color-red);
+  box-shadow: none; /* Убираем тень при фокусе, она здесь не нужна */
+}
+
+.cta-form__form .form__input--textarea {
+  height: 60px;
+  resize: none; /* Запрещаем изменение размера */
+}
+
+.cta-form__form .form__btn {
+  width: auto; /* Кнопка не на всю ширину */
+  padding: 12px 40px;
+  margin-top: 20px;
+}
+
+/* Изображение девушки */
+.cta-form__image-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%; /* Центрируем */
+  transform: translateX(-50%);
+  width: 350px; /* Ширина картинки */
+  pointer-events: none; /* Картинка не мешает кликать на форму */
+  z-index: 100;
+}
+.cta-form__image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+/* Добавьте это в ваш CSS */
+.form__input.is-invalid {
+  border-bottom-color: var(
+    --color-red
+  ) !important; /* Делаем рамку красной, если поле не заполнено */
+}
+
+/* ==================== NEWS SECTION (DESKTOP FIRST) ==================== */
+
+.news {
+  padding: 20px 0;
+  background-color: #f6f6f6; /* Светло-серый фон секции */
+}
+
+.news__grid {
+  display: grid;
+  /* Desktop First: 3 колонки */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px; /* Отступ между карточками */
+  margin-bottom: 40px;
+}
+
+.news-card {
+  display: block;
+  text-decoration: none;
+  background-color: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* .news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+} */
+
+.news-card__image-wrapper {
+  aspect-ratio: 1.8 / 1; /* Задаем соотношение сторон для картинки */
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.news-card__image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Картинка заполняет блок, сохраняя пропорции */
+  transition: transform 0.4s ease;
+}
+
+.news-card:hover .news-card__image-wrapper img {
+  transform: scale(1.05); /* Эффект "приближения" картинки при наведении */
+}
+
+.news-card__content {
+  padding: 10px 0;
+}
+
+.news-card__date {
+  display: block;
+  font-size: 14px;
+  color: var(--color-text);
+  margin-bottom: 20px;
+}
+
+.news-card__title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-dark);
+  margin-bottom: 20px;
+}
+
+.news-card__excerpt {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+/* Блок с кнопкой "Все новости" */
+.news__footer {
+  display: flex;
+  justify-content: flex-end; /* Кнопка справа по умолчанию */
+}
+
+/* ==================== FOOTER SECTION (DESKTOP FIRST) ==================== */
+
+.footer {
+  color: var(--color-white);
+}
+
+.footer__main {
+  background-color: var(--color-red);
+  padding: 30px 0;
+}
+
+.footer__main-grid {
+  display: flex;
+  gap: 60px;
+  justify-content: space-between;
+}
+.footer__menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+
+  gap: 40px;
+}
+/* Колонка 1: Контакты */
+.footer__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer__phone {
+  font-family: var(--second-family);
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--color-white);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.footer__phone:hover {
+  color: var(--color-orange);
+}
+
+.footer__socials {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  color: var(--color-white);
+  transition: background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+.social-icon:hover {
+  background-color: var(--color-orange);
+  border-color: var(--color-orange);
+}
+.social-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* Колонки 2 и 3: Навигация */
+.footer-nav {
+  display: flex;
+  gap: 40px;
+}
+
+.footer-nav--services {
+  gap: 20px;
+}
+
+.footer-nav__title {
+  font-family: var(--font-family);
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.footer-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-nav__link {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-white);
+  transition: color var(--transition-fast);
+}
+.footer-nav__link:hover {
+  color: var(--color-orange);
+}
+.footer-nav--services .footer-nav__link {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-white);
+  transition: color var(--transition-fast);
+}
+.footer-nav--services .footer-nav__link:hover {
+  color: var(--color-orange);
+}
+
+/* Нижняя часть футера */
+.footer__bottom {
+  background-color: var(--color-dark);
+  padding: 13px 0;
+}
+
+.footer__legal {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #fff;
+  text-align: center;
+}
+.footer__legal a {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+.footer__legal a:hover {
+  text-decoration: none;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 992px;
+  }
+  .services__grid {
+    /* Переключаем сетку на 2 колонки */
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .service-card__tags {
+    display: none; /* Скрываем блок с тегами, как на макете */
+  }
+
+  .footer__main-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .footer__contacts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .footer__menu {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 100%;
+  }
+  .section-title {
+    font-size: 28px;
+  }
+  .header__nav {
+    display: none; /* Скрываем десктопную навигацию */
+  }
+  .burger {
+    display: block; /* Показываем бургер */
+  }
+  .about-company__row {
+    gap: 30px; /* Уменьшаем отступ между колонками */
+  }
+  .features__grid {
+    /* Переключаем сетку на 2 колонки */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  .feature-item {
+    flex-direction: row;
+    gap: 20px;
+  }
+  .feature-item__icon-wrapper {
+    flex: 0 0 100px;
+    height: 100px;
+    margin-bottom: 0;
+  }
+  .feature-item__title {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .cta-banner__content {
+    padding: 30px 40px;
+    gap: 30px;
+  }
+  .cta-banner__highlight-main {
+    font-size: 52px;
+  }
+  .cta-banner__highlight-sub {
+    font-size: 28px;
+  }
+  .cta-banner__text {
+    font-size: 20px;
+  }
+  .about-company__subtitle {
+    font-size: 26px;
+  }
+
+  .partners__grid {
+    /* Переключаем сетку на 3 колонки */
+    grid-template-columns: repeat(auto-fit, 244px);
+    gap: 6px;
+  }
+  .partner-logo {
+    padding: 75px 66px;
+    width: 244px;
+    height: 244px;
+  }
+
+  .cta-form__grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-form__image-wrapper {
+    display: none;
+  }
+  .cta-form__info {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 83px 20px;
+  }
+  .cta-form__form-wrapper {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 56px 10px;
+  }
+  .cta-form__title {
+    text-align: center;
+  }
+  .cta-form__perk-item:first-of-type {
+    max-width: 100%;
+    font-weight: 700;
+  }
+  .cta-form__perk-item:last-of-type {
+    max-width: 100%;
+    text-align: center;
+  }
+  .cta-form__form .form__btn {
+    width: 100%;
+  }
+  
+  .licenses-slide {
+    width: 300px;
+    height: auto;
+  }
+  .licenses-slide img {
+    display: block;
+    width: auto; /* Картинка 100% от ширины слайда */
+    object-fit: contain;
+    max-height: 300px;
+  }
+
+  .news__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 26px;
+  }
+  .hero__container {
+    padding: 0;
+  }
+  .hero__content {
+    background: var(--color-gray);
+  }
+  .hero__title {
+    text-align: center;
+    font-size: 48px;
+  }
+  .hero__content-box {
+    flex-direction: column;
+  }
+  .hero__img {
+    display: none;
+  }
+  .hero__img-mob {
+    display: block;
+  }
+  .hero__inner-right {
+    display: none;
+  }
+  .hero__inner-left {
+    align-items: center;
+  }
+  .hero__btn {
+    align-self: center;
+  }
+
+  .services {
+    padding: 40px 0 0 0; /* Уменьшаем отступы секции на мобильных */
+  }
+  .section-title {
+    font-size: 32px; /* Уменьшаем заголовок */
+    margin-bottom: 20px;
+  }
+  .services__grid {
+    /* Переключаем сетку на 1 колонку */
+    grid-template-columns: 1fr;
+  }
+  .service-card {
+  /* Каждая карточка занимает равное пространство */
+  flex: 1 1 0;
+  min-width: 100%;
+  height: 100%;
+  }
+  .featured-services {
+    padding: 20px 0; /* Уменьшаем отступы секции */
+  }
+
+  .featured-services__list {
+    /* Перестраиваем flex-контейнер в колонку */
+    display: block;
+  }
+  .about-company {
+    padding: 40px 0;
+  }
+
+  .about-company__header {
+    text-align: left; /* Выравниваем заголовки по левому краю */
+  }
+
+  .about-company__row,
+  .about-company__row--reverse {
+    /* Перестраиваем flex-контейнер в колонку */
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* На мобильных вторая картинка идет ПЕРЕД вторым текстом, 
+     а в HTML она первая. При flex-direction: column это работает автоматически. */
+
+  .about-company__cta {
+    /* На мобильном макете cta-блок выровнен по левому краю, 
+       но можно сделать и по центру, если нужно */
+    justify-content: flex-start;
+    margin-top: 30px;
+  }
+  .features {
+    padding: 0 0 20px 0;
+  }
+  .features__grid {
+    /* Переключаем сетку на 1 колонку */
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .about-company__subtitle {
+    font-size: 24px;
+  }
+
+  .cta-banner-section {
+    padding: 0;
+    background: #fff;
+  }
+
+  .cta-banner {
+    flex-direction: column-reverse; /* Перестраиваем в колонку */
+    min-height: 350px;
+    height: auto;
+    gap: 26px;
+  }
+
+  .cta-banner__image-wrapper {
+    position: relative; /* Возвращаем в поток документа */
+    width: fit-content;
+    height: 100%;
+    clip-path: none; /* Убираем скошенную форму */
+  }
+
+  .cta-banner__content {
+    margin-left: 0; /* Сбрасываем отступ */
+    flex-direction: row; /* Элементы контента тоже в колонку */
+    text-align: center;
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .cta-banner__highlight {
+    margin-bottom: 8px;
+  }
+  .cta-banner__text {
+    text-align: left;
+  }
+
+  .partners {
+    padding: 20px 0;
+  }
+  .partners__grid {
+    /* Переключаем сетку на 2 колонки */
+    grid-template-columns: repeat(auto-fit, 1fr);
+  }
+
+  .partner-logo {
+    padding: 53px;
+    height: 200px; /* Уменьшаем высоту ячейки */
+  }
+
+  /* На мобильных убираем сложный 3D-эффект, оставляем только тень */
+  .licenses-slide img,
+  .licenses-slide:hover img,
+  .licenses-slide.swiper-slide-active img {
+    transform: none;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+  }
+  .cta-form-section {
+    padding: 0;
+  }
+
+  .cta-form__title {
+    font-size: 36px;
+  }
+  .news {
+    padding: 30px 0 20px;
+    background: #fff;
+  }
+  .news__grid {
+    grid-template-columns: 1fr;
+    margin-bottom: 20px;
+  }
+  .news-card__content {
+    padding: 0;
+    margin-top: 10px;
+  }
+  
+  .news-card__title {
+    min-height: auto; /* На мобильных убираем фикс высоты, т.к. карточки друг под другом */
+  }
+  .news__footer {
+    justify-content: center; /* Кнопка по центру на мобильных */
+  }
+  .footer__main {
+    padding: 20px 0;
+  }
+  .footer__main-grid {
+    flex-direction: column-reverse;
+    gap: 40px;
+  }
+  .footer__contacts {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer__menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-nav__grid {
+    grid-column: span 2;
+  }
+  .footer__btn{
+    display: block;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer__grid {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+}
+@media (max-width: 460px) {
+    .header__main-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+}
