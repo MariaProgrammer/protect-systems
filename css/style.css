@@ -2852,6 +2852,97 @@ ol {
   padding-top: 0;
 }
 
+.license-hero {
+  padding: 28px 0;  
+  background: url('../img/license/lic__bg.png'), #f6f6f6;   
+  background-position: right center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+
+/* ==================== LICENSE GALLERY SECTION (DESKTOP FIRST) ==================== */
+
+.license-gallery {
+  padding: 40px 0;
+  
+}
+
+.license-gallery__grid {
+  display: grid;
+  /* Desktop First: 3 колонки */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.license-card {
+  display: block;
+  text-decoration: none;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+ 
+  
+}
+
+
+
+.license-card__image-wrapper {
+  padding: 8px;
+  height: 520px;
+  width: auto;
+}
+
+.license-card__image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  /* Тень для самого изображения, чтобы создать эффект объема */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.license-card__content {
+  padding: 0 8px 24px; /* Отступы только по бокам и снизу */
+}
+
+.license-card__title {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 90%;
+  margin-bottom: 20px;
+}
+
+.license-card__text {
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+
+/* ==================== АДАПТИВНОСТЬ (DESKTOP FIRST) ==================== */
+
+/* Планшетная версия: 2 колонки (экраны до 991px) */
+@media (max-width: 992px) {
+  .license-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Мобильная версия: 1 колонка (экраны до 767px) */
+@media (max-width: 768px) {
+  .license-gallery {
+    padding: 40px 0;
+  }
+  .license-gallery__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+
 
 /* ==================== АДАПТИВНОСТЬ (DESKTOP FIRST) ==================== */
 

@@ -466,5 +466,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+     Fancybox.bind("[data-fancybox]", {
+        // Здесь можно добавить кастомные опции, если нужно
+        // Например:
+        // loop: true, // Бесконечная прокрутка галереи
+    });
 
 });
