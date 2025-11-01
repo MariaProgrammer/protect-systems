@@ -305,36 +305,6 @@ ol {
   background-color: #25d366;
 }
 
-/* NAV (Десктопная навигация) */
-.nav {
-  background-color: var(--color-red);
-}
-.nav__list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-.nav__link {
-  display: block;
-  padding: 20px 25px;
-  font-family: var(--second-family);
-  font-size: 20px;
-  letter-spacing: 0.05em;
-  color: var(--color-white);
-  text-transform: uppercase;
-  transition: background-color var(--transition-fast);
-}
-.nav__link:hover {
-  background-color: #8e1a1a;
-}
-.nav__item.is-current > .nav__link {
-  background-color: #8e1a1a;
-}
-.nav__item.is-highlighted > .nav__link {
-  color: var(--color-orange);
-}
-
 /* ==================== BURGER & MOBILE NAV (ИСПРАВЛЕННЫЙ) ==================== */
 
 /* Кнопка-бургер */
@@ -539,16 +509,15 @@ ol {
   }
   .logo {
     flex-shrink: 1;
-}
-.logo svg {
-  width: 100%;
-}
-  .header__main-top {    
+  }
+  .logo svg {
+    width: 100%;
+  }
+  .header__main-top {
     align-items: center;
     gap: 15px;
   }
   .header__main-bottom {
-    
     align-items: center;
   }
   .phone-block__number {
@@ -561,39 +530,6 @@ ol {
     gap: 10px;
   }
 }
-
-/* MAIN NAVIGATION */
-/* .nav {
-  background-color: var(--color-red);
-}
-
-.nav__list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.nav__link {
-  display: block;
-  padding: 20px 25px;
-  font-family: var(--second-family);
-  font-size: 20px;
-  color: var(--color-white);
-  text-transform: uppercase;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
-}
-
-.nav__link:hover {
-  background-color: #8e1a1a;
-} */
-/* Модификатор для текущего пункта */
-/* .nav__item.is-current .nav__link {
-  background-color: #8e1a1a;
-} */
-/* Модификатор для выделенного пункта */
-/* .nav__item.is-highlighted .nav__link {
-  color: var(--color-orange);
-} */
 
 /* BURGER & MOBILE NAV */
 .burger {
@@ -626,37 +562,43 @@ ol {
   left: 0;
 }
 
-/* ==================== MEGA MENU (DESKTOP FIRST) ==================== */
+/* ==================== MEGA MENU (ИСПРАВЛЕННЫЙ) ==================== */
 
-/* Делаем контейнер навигации относительным, чтобы позиционировать меню */
 .nav {
   position: relative;
   background-color: var(--color-red);
 }
-.nav__container {
-  position: relative;
-}
-
 .nav__list {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
-
 .nav__link {
-  display: block;
-  padding: 20px 25px;
+  display: block;  
   font-family: var(--second-family);
+  font-weight: 400;
   font-size: 20px;
   letter-spacing: 0.05em;
   color: var(--color-white);
   text-transform: uppercase;
+  
+}
+.nav__item {
+  padding: 15px;
   transition: background-color var(--transition-fast);
 }
 
-/* Стили для активного (при наведении) пункта */
-.nav__item.is-active > .nav__link {
-  background-color: #8e1a1a; /* Более темный красный */
+/* Пункт, у которого есть выпадающее меню, теперь является точкой отсчета */
+.nav__item--has-dropdown {
+  position: relative;
+}
+
+/* Подсветка при наведении/активности */
+.nav__item.is-active  {
+  background-color: #8e1a1a;
+}
+.nav__item:hover  {
+  background-color: #8e1a1a;
 }
 
 /* --- Стили для выпадающего меню --- */
@@ -664,48 +606,42 @@ ol {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: #8e1a1a; /* Темно-красный фон */
-  z-index: -1; /* Прячем под всем */
+  left: 0; /* Выравнивается по левому краю родительского li */
+  width: max-content;
   
-  /* Начальное состояние (скрыто) */
+  background-color: #8e1a1a; /* Общий фон */
+  z-index: -1;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-20px);
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
 
-/* Состояние при открытии */
 .dropdown-menu.is-visible {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-  z-index: 99; /* Показываем над всем */
+  z-index: 99;
 }
 
 .dropdown-menu__container {
-  display: flex;
-  padding-top: 20px;
-  padding-bottom: 30px;
+  display: inline-flex;
 }
 
-/* Левая колонка (красная) */
+/* Левая колонка */
 .dropdown-menu__left {
-  flex: 0 0 280px; /* Фиксированная ширина */
+  flex: 0 0 280px;
   display: flex;
   flex-direction: column;
+  /* background-color убран, так как он теперь на родителе */
 }
 
 .dropdown-menu__item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 12px 15px;
-  color: var(--color-white);
-  cursor: pointer;
+  align-items: stretch; /* Растягиваем элементы на всю высоту */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: background-color var(--transition-fast);
+  cursor: pointer;
 }
 .dropdown-menu__item:hover,
 .dropdown-menu__item.is-active {
@@ -717,46 +653,56 @@ ol {
   align-items: center;
   gap: 10px;
   font-weight: 500;
+  padding: 12px 15px;
+  color: var(--color-white);
+  text-decoration: none;
+  flex-grow: 1;
 }
 .dropdown-menu__item-text svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-}
-.dropdown-menu__item-arrow svg {
-    width: 8px;
-    height: 12px;
-    transition: transform 0.3s ease;
-}
-.dropdown-menu__item.is-active .dropdown-menu__item-arrow svg {
-    transform: rotate(180deg);
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
-/* Правая колонка (белая) */
+.dropdown-menu__item-arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  color: var(--color-white);
+}
+.dropdown-menu__item-arrow svg {
+  width: 8px;
+  height: 12px;
+  transition: transform 0.3s ease;
+}
+.dropdown-menu__item.is-active .dropdown-menu__item-arrow {
+  transform: rotate(90deg);
+}
+
+/* Правая колонка */
 .dropdown-menu__right {
-  flex-grow: 1;
   background-color: var(--color-white);
   color: var(--color-dark);
   padding: 20px 30px;
-  min-height: 300px; /* Минимальная высота, чтобы не "прыгало" */
-  
-  /* Плавный выезд */
+  /* width: 520px; */
+  width: 300px;
   position: relative;
   overflow: hidden;
 }
 
 .submenu {
-    position: absolute;
-    top: 20px;
-    left: 30px;
-    width: calc(100% - 60px);
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  width: calc(100% - 60px);
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .submenu.is-active {
-    opacity: 1;
-    transform: translateX(0);
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .submenu__title {
@@ -773,11 +719,11 @@ ol {
   gap: 10px;
 }
 .submenu__link {
-    color: var(--color-text);
-    text-decoration: none;
+  color: var(--color-text);
+  text-decoration: none;
 }
 .submenu__link:hover {
-    color: var(--color-red);
+  color: var(--color-red);
 }
 
 /* ==================== HERO SLIDER  ==================== */
@@ -812,7 +758,7 @@ ol {
 }
 
 .hero__content {
-  background: url("../img/hero/hero__bg.png"), var(--color-gray);
+  background: url("../img/index/hero/hero__bg.png"), var(--color-gray);
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: right center;
@@ -1118,11 +1064,11 @@ ol {
   background-color: var(--color-orange);
 }
 .service-card__image-wrapper--gray {
-  background: url('../img/services/tubes.png');
+  background: url("../img/index/services/tubes.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-} 
+}
 
 .service-card__image {
   height: 100%;
@@ -1229,7 +1175,6 @@ ol {
 }
 
 .service-card__image {
-  
   width: auto;
 }
 
@@ -1617,7 +1562,7 @@ ol {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 0;
 
-  background: url("../img/form/form__bg.png"), var(--color-red);
+  background: url("../img/index/form/form__bg.png"), var(--color-red);
   background-repeat: no-repeat;
   background-position: center right;
   background-size: auto 100%;
@@ -1933,6 +1878,62 @@ ol {
   text-decoration: none;
 }
 
+/* ==================== PAGE HERO SECTION (DESKTOP FIRST) ==================== */
+
+.page-hero {
+  position: relative; /* Необходимо для позиционирования оверлея */
+  padding: 28px 0;
+  background-color: #f0f0f0; /* Цвет на случай, если фон-картинка не загрузится */
+  background-image: url('../img/index/hero/hero__bg.png'); /* Укажите путь к вашему фону */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* Полупрозрачный белый оверлей, который "приглушает" фон */
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0; /* Растягивает на весь блок (top: 0; right: 0; bottom: 0; left: 0;) */
+  background-color: rgba(255, 255, 255, 0.85);
+  z-index: 1; /* Оверлей находится под контентом */
+}
+
+/* Контент должен быть поверх оверлея */
+.page-hero .container {
+  position: relative;
+  z-index: 2;
+}
+.page-hero__title {
+  margin: 0;
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+  margin-bottom: 20px;
+}
+
+.breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap; /* Позволяет крошкам переноситься, если они не помещаются в одну строку */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.breadcrumbs__item {
+  display: flex;
+  align-items: center;
+}
+
+/* Разделитель "/" добавляется через CSS */
+.breadcrumbs__item:not(:last-child)::after {
+  content: '/';
+}
+
+
+
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 1200px) {
   .container {
@@ -2056,7 +2057,7 @@ ol {
   .cta-form__form .form__btn {
     width: 100%;
   }
-  
+
   .licenses-slide {
     width: 300px;
     height: auto;
@@ -2118,10 +2119,10 @@ ol {
     grid-template-columns: 1fr;
   }
   .service-card {
-  /* Каждая карточка занимает равное пространство */
-  flex: 1 1 0;
-  min-width: 100%;
-  height: 100%;
+    /* Каждая карточка занимает равное пространство */
+    flex: 1 1 0;
+    min-width: 100%;
+    height: 100%;
   }
   .featured-services {
     padding: 20px 0; /* Уменьшаем отступы секции */
@@ -2240,7 +2241,7 @@ ol {
     padding: 0;
     margin-top: 10px;
   }
-  
+
   .news-card__title {
     min-height: auto; /* На мобильных убираем фикс высоты, т.к. карточки друг под другом */
   }
@@ -2265,7 +2266,7 @@ ol {
   .footer-nav__grid {
     grid-column: span 2;
   }
-  .footer__btn{
+  .footer__btn {
     display: block;
     width: 100%;
   }
@@ -2276,12 +2277,10 @@ ol {
     flex-direction: column;
     gap: 30px;
   }
-
 }
 @media (max-width: 460px) {
-    .header__main-bottom {
+  .header__main-bottom {
     flex-direction: column;
     align-items: flex-start;
   }
-  
 }

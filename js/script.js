@@ -50,196 +50,193 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // ==================== DESKTOP DROPDOWN MENU ====================
-    // // Реализация через JS, как было запрошено. Для простых случаев можно использовать CSS :hover
-    // const dropdownItems = document.querySelectorAll('.nav__item--has-dropdown');
+    
 
-    // dropdownItems.forEach(item => {
-    //     item.addEventListener('mouseenter', () => {
-    //         item.classList.add('is-active');
-    //     });
-    //     item.addEventListener('mouseleave', () => {
-    //         item.classList.remove('is-active');
-    //     });
-    // });
+    
 
-    // --- 1. ДАННЫЕ ДЛЯ МЕНЮ ---
-    // Здесь мы храним контент для каждого выпадающего меню.
-    // Структура: id -> { левая колонка, правая колонка }
-    const menuData = {
-        'services': {
-            left: [
-                { id: 'fire-safety', icon: '🔥', text: 'Проектирование' },
-                { id: 'mounting', icon: '🔧', text: 'Монтаж' },
-                { id: 'maintenance', icon: '🛠️', text: 'Техническое обслуживание' },
-                { id: 'construction', icon: '🏗️', text: 'Строительство' },
-                { id: 'stu', icon: '📄', text: 'Разработка СТУ' },
-            ],
-            right: {
-                'fire-safety': {
-                    title: 'Системы пожарной безопасности',
-                    links: ['Пожарная сигнализация (СПС)', 'Система оповещения (СОУЭ)', 'Спринклерная система', 'Газовая система', 'Порошковая система']
-                },
-                'mounting': {
-                    title: 'Монтажные работы',
-                    links: ['Монтаж СПС', 'Монтаж СОУЭ', 'Монтаж видеонаблюдения']
-                },
-                'maintenance': {
-                    title: 'Техническое обслуживание',
-                    links: ['Обслуживание сигнализации', 'Проверка систем', 'Плановый ремонт']
-                },
-                'construction': {
-                    title: 'Строительство',
-                    links: ['Пожарные резервуары', 'Огнезащита конструкций']
-                },
-                'stu': {
-                    title: 'Разработка СТУ',
-                    links: ['Анализ объекта', 'Согласование в МЧС']
-                },
-            }
-        },
-        'documentation': {
-            left: [
-                { id: 'certs', icon: '📜', text: 'Сертификаты' },
-                { id: 'licenses', icon: '⭐', text: 'Лицензии' },
-            ],
-            right: {
-                'certs': {
-                    title: 'Наши сертификаты',
-                    links: ['Сертификат ISO 9001', 'Сертификат соответствия ГОСТ']
-                },
-                'licenses': {
-                    title: 'Действующие лицензии',
-                    links: ['Лицензия МЧС', 'Лицензия ФСБ']
+        // ==================== DESKTOP DROPDOWN MENU ====================
+
+        // --- 1. ДАННЫЕ ДЛЯ МЕНЮ ---
+        const menuData = {
+            'services': {
+                left: [
+                    { id: 'fire-safety', svg: '', text: 'Проектирование', url: '/services/design' },
+                    { id: 'mounting', svg: '', text: 'Монтаж', url: '/services/mounting' },
+                    { id: 'maintenance', svg: '', text: 'Техническое обслуживание', url: '/services/maintenance' },
+                    { id: 'construction', svg: '', text: 'Строительство', url: '/services/construction' },
+                    { id: 'stu', svg: '', text: 'Разработка СТУ', url: '/services/stu' },
+                ],
+                right: {
+                    'fire-safety': {
+                        title: 'Системы пожарной безопасности',
+                        links: [
+                            { text: 'Пожарная сигнализация (СПС)', url: '/services/design/sps' },
+                            { text: 'Система оповещения (СОУЭ)', url: '/services/design/soue' },
+                            { text: 'Спринклерная система', url: '/services/design/sprinkler' }
+                        ]
+                    },
+                    'mounting': {
+                        title: 'Монтажные работы',
+                        links: [{ text: 'Монтаж СПС', url: '/services/mounting/sps' }]
+                    },
+                    'maintenance': {
+                        title: 'Техническое обслуживание',
+                        links: [{ text: 'Обслуживание сигнализации', url: '/services/maintenance/alarms' }]
+                    },
+                    'construction': {
+                        title: 'Строительство',
+                        links: [{ text: 'Пожарные резервуары', url: '/services/construction/tanks' }]
+                    },
+                    'stu': {
+                        title: 'Разработка СТУ',
+                        links: [{ text: 'Анализ объекта', url: '/services/stu/analysis' }]
+                    },
+                }
+            },
+            'documentation': {
+                left: [{ id: 'certs', svg: '', text: 'Сертификаты', url: '/docs/certs' }],
+                right: {
+                    'certs': { title: 'Сертификаты', links: [{ text: 'Сертификат ISO 9001', url: '/docs/certs/iso' }] }
+                }
+            },
+            'articles': {
+                left: [{ id: 'news', svg: '', text: 'Новости', url: '/articles/news' }],
+                right: {
+                    'news': { title: 'Новости компании', links: [{ text: 'Открытие филиала', url: '/articles/news/new-office' }] }
                 }
             }
-        },
-        'articles': {
-            left: [
-                { id: 'news', icon: '📰', text: 'Новости компании' },
-                { id: 'reviews', icon: '💬', text: 'Обзоры оборудования' },
-            ],
-            right: {
-                'news': {
-                    title: 'Последние новости',
-                    links: ['Открытие нового филиала', 'Новинка сезона 2025']
-                },
-                'reviews': {
-                    title: 'Обзоры',
-                    links: ['Сравнение датчиков дыма', 'Лучшие огнетушители для офиса']
-                }
-            }
-        }
-    };
+        };
 
-    // --- 2. ЛОГИКА РАБОТЫ МЕНЮ ---
-    const nav = document.querySelector('.nav');
-    const dropdownItems = document.querySelectorAll('.nav__item--has-dropdown');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
-    const dropdownContainer = dropdownMenu.querySelector('.dropdown-menu__container');
-    let leaveTimeout;
+        // --- 2. ЛОГИКА РАБОТЫ МЕНЮ ---
+        const nav = document.querySelector('.nav');
+        const dropdownItems = document.querySelectorAll('.nav__item--has-dropdown');
+        let activeDropdown = null;
+        let leaveTimeout;
 
-    // Функция для генерации HTML левой колонки
-    const createLeftColumn = (items) => {
-        const leftCol = document.createElement('div');
-        leftCol.className = 'dropdown-menu__left';
-        items.forEach(item => {
-            // Вместо emoji можно вставить SVG-код иконки
-            const iconHtml = `<svg class="icon-${item.id}" viewBox="0 0 24 24"><path d="..."/></svg>`;
-            leftCol.innerHTML += `
-                <div class="dropdown-menu__item" data-submenu-id="${item.id}">
-                    <span class="dropdown-menu__item-text">
-                        ${item.icon} 
-                        ${item.text}
-                    </span>
-                    <span class="dropdown-menu__item-arrow">
-                        <svg viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z" fill="currentColor"/></svg>
-                    </span>
+        const createDropdownHTML = (data) => {
+            const leftColHTML = data.left.map(item => `
+            <div class="dropdown-menu__item" data-submenu-id="${item.id}">
+                <a href="${item.url}" class="dropdown-menu__item-text">
+                    ${item.svg || '<svg viewBox="0 0 24 24"></svg>'}
+                    <span>${item.text}</span>
+                </a>
+                <span class="dropdown-menu__item-arrow">
+                    <svg viewBox="0 0 8 12"><path d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z" fill="currentColor"/></svg>
+                </span>
+            </div>
+        `).join('');
+
+            const rightColHTML = Object.entries(data.right).map(([key, submenu]) => `
+            <div class="submenu" data-submenu-id="${key}">
+                <h3 class="submenu__title">${submenu.title}</h3>
+                <ul class="submenu__list">
+                    ${submenu.links.map(link => `<li><a href="${link.url}" class="submenu__link">${link.text}</a></li>`).join('')}
+                </ul>
+            </div>
+        `).join('');
+
+            return `
+            <div class="dropdown-menu">
+                <div class="dropdown-menu__container">
+                    <div class="dropdown-menu__left">${leftColHTML}</div>
+                    <div class="dropdown-menu__right">${rightColHTML}</div>
                 </div>
-            `;
-        });
-        return leftCol;
-    };
+            </div>
+        `;
+        };
 
-    // Функция для генерации HTML правой колонки
-    const createRightColumn = (submenus) => {
-        const rightCol = document.createElement('div');
-        rightCol.className = 'dropdown-menu__right';
-        for (const key in submenus) {
-            const submenu = submenus[key];
-            rightCol.innerHTML += `
-                <div class="submenu" data-submenu-id="${key}">
-                    <h3 class="submenu__title">${submenu.title}</h3>
-                    <ul class="submenu__list">
-                        ${submenu.links.map(link => `<li><a href="#" class="submenu__link">${link}</a></li>`).join('')}
-                    </ul>
-                </div>
-            `;
-        }
-        return rightCol;
-    };
+        const showSubmenu = (submenuId, dropdown) => {
+            const leftItems = dropdown.querySelectorAll('.dropdown-menu__item');
+            const rightSubmenus = dropdown.querySelectorAll('.submenu');
 
-    const showSubmenu = (submenuId, leftItems, rightSubmenus) => {
-        leftItems.forEach(i => i.classList.remove('is-active'));
-        rightSubmenus.forEach(s => s.classList.remove('is-active'));
+            leftItems.forEach(i => i.classList.remove('is-active'));
+            rightSubmenus.forEach(s => s.classList.remove('is-active'));
 
-        const activeLeftItem = Array.from(leftItems).find(i => i.dataset.submenuId === submenuId);
-        const activeSubmenu = Array.from(rightSubmenus).find(s => s.dataset.submenuId === submenuId);
+            const activeLeftItem = Array.from(leftItems).find(i => i.dataset.submenuId === submenuId);
+            const activeSubmenu = Array.from(rightSubmenus).find(s => s.dataset.submenuId === submenuId);
 
-        if (activeLeftItem) activeLeftItem.classList.add('is-active');
-        if (activeSubmenu) activeSubmenu.classList.add('is-active');
-    };
+            if (activeLeftItem) activeLeftItem.classList.add('is-active');
+            if (activeSubmenu) activeSubmenu.classList.add('is-active');
+        };
 
-    // При наведении на пункт с выпадающим меню
-    dropdownItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            clearTimeout(leaveTimeout); // Отменяем таймер закрытия
+        dropdownItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                clearTimeout(leaveTimeout);
 
-            // Если мы уже навели на этот пункт, ничего не делаем
-            if (item.classList.contains('is-active')) return;
+                if (item.classList.contains('is-active')) return;
 
-            dropdownItems.forEach(i => i.classList.remove('is-active'));
-            item.classList.add('is-active');
-
-            const menuId = item.dataset.menuId;
-            const data = menuData[menuId];
-
-            if (data) {
-                dropdownContainer.innerHTML = '';
-                const leftCol = createLeftColumn(data.left);
-                const rightCol = createRightColumn(data.right);
-                dropdownContainer.append(leftCol, rightCol);
-
-                dropdownMenu.classList.add('is-visible');
-
-                const leftItems = leftCol.querySelectorAll('.dropdown-menu__item');
-                const rightSubmenus = rightCol.querySelectorAll('.submenu');
-
-                leftItems.forEach(li => {
-                    li.addEventListener('mouseenter', () => {
-                        showSubmenu(li.dataset.submenuId, leftItems, rightSubmenus);
-                    });
-                });
-
-                // Показываем первое подменю по умолчанию
-                if (data.left.length > 0) {
-                    showSubmenu(data.left[0].id, leftItems, rightSubmenus);
+                // Закрываем предыдущее открытое меню, если оно есть
+                if (activeDropdown && activeDropdown.parentElement !== item) {
+                    activeDropdown.classList.remove('is-visible');
+                    activeDropdown.parentElement.classList.remove('is-active');
+                    activeDropdown = null;
                 }
-            }
+
+                item.classList.add('is-active');
+                let dropdown = item.querySelector('.dropdown-menu');
+
+                // Если меню для этого пункта еще не создано, создаем его
+                if (!dropdown) {
+                    const menuId = item.dataset.menuId;
+                    const data = menuData[menuId];
+                    if (data) {
+                        const dropdownHTML = createDropdownHTML(data);
+                        item.insertAdjacentHTML('beforeend', dropdownHTML);
+                        dropdown = item.querySelector('.dropdown-menu');
+
+                        // Добавляем обработчики наведения на левые пункты
+                        const leftItems = dropdown.querySelectorAll('.dropdown-menu__item');
+                        leftItems.forEach(li => {
+                            const arrow = li.querySelector('.dropdown-menu__item-arrow');
+                            const submenuId = li.dataset.submenuId;
+
+                            // Показываем подменю при наведении на весь пункт
+                            li.addEventListener('mouseenter', () => {
+                                showSubmenu(submenuId, dropdown);
+                            });
+
+                            // Также показываем подменю при клике на стрелку (для тач-устройств в будущем)
+                            if (arrow) {
+                                arrow.addEventListener('click', (e) => {
+                                    e.preventDefault(); // Предотвращаем переход по ссылке
+                                    showSubmenu(submenuId, dropdown);
+                                });
+                            }
+                        });
+                    }
+                }
+
+                // Показываем меню
+                if (dropdown) {
+                    activeDropdown = dropdown;
+                    setTimeout(() => {
+                        dropdown.classList.add('is-visible');
+                    }, 10); // Задержка для CSS-анимации
+
+                    // Показываем первое подменю по умолчанию
+                    const firstSubmenuId = menuData[item.dataset.menuId]?.left[0]?.id;
+                    if (firstSubmenuId) {
+                        showSubmenu(firstSubmenuId, dropdown);
+                    }
+                }
+            });
         });
-    });
 
-    // Логика закрытия меню
-    const closeDropdownMenu = () => {
-        leaveTimeout = setTimeout(() => {
-            dropdownItems.forEach(i => i.classList.remove('is-active'));
-            dropdownMenu.classList.remove('is-visible');
-        }, 200); // Небольшая задержка перед закрытием
-    };
+        // Логика закрытия меню
+        const closeDropdownMenu = () => {
+            leaveTimeout = setTimeout(() => {
+                if (activeDropdown) {
+                    activeDropdown.classList.remove('is-visible');
+                    activeDropdown.parentElement.classList.remove('is-active');
+                    activeDropdown = null;
+                }
+            }, 200);
+        };
 
-    nav.addEventListener('mouseleave', closeDropdownMenu);
-    dropdownMenu.addEventListener('mouseenter', () => clearTimeout(leaveTimeout));
-    dropdownMenu.addEventListener('mouseleave', closeDropdownMenu);
+        nav.addEventListener('mouseleave', closeDropdownMenu);
+
+    
+
 
     // ==================== MODAL LOGIC ====================
     const openModalButtons = document.querySelectorAll('[data-modal-open]');
