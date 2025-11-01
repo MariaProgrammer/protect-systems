@@ -1486,8 +1486,6 @@ ol {
   opacity: 1;
 }
 
-/* ==================== LICENSES SECTION (ЦЕНТРИРОВАННЫЙ) ==================== */
-
 /* ==================== LICENSES SECTION (ИСПРАВЛЕННЫЙ ЦЕНТРИРОВАННЫЙ) ==================== */
 
 .licenses {
@@ -1540,7 +1538,41 @@ ol {
   transform: rotateY(0) rotateX(0) scale(1.05);
   filter: drop-shadow(0px 20px 25px rgba(0, 0, 0, 0.25));
 }
+/* ==================== THANKS (DESKTOP FIRST) ==================== */
 
+.thanks {
+
+}
+
+.thanks__title {
+  padding: 30px 20px;
+}
+.thanks__grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.thanks__item {
+  width: 360px;
+  height: auto;
+  
+}
+.thanks__item img {
+  transform: rotateY(7deg) rotateX(-3deg);
+  filter: drop-shadow(5px 10px 15px rgba(0, 0, 0, 0.2));
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.thanks__img img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  
+}
+.thanks__item:hover img {
+  transform: rotateY(0) rotateX(0) scale(1.05);
+  filter: drop-shadow(0px 20px 25px rgba(0, 0, 0, 0.25));
+}
 /* ==================== CTA FORM SECTION (DESKTOP FIRST) ==================== */
 
 .cta-form-section {
@@ -2014,13 +2046,14 @@ ol {
 
   .partners__grid {
     /* Переключаем сетку на 3 колонки */
-    grid-template-columns: repeat(auto-fit, 244px);
+    grid-template-columns: repeat(3, 1fr);
     gap: 6px;
   }
   .partner-logo {
     padding: 75px 66px;
-    width: 244px;
-    height: 244px;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
   }
 
   .cta-form__grid {
@@ -2067,6 +2100,9 @@ ol {
     width: auto; /* Картинка 100% от ширины слайда */
     object-fit: contain;
     max-height: 300px;
+  }
+  .thanks {
+    display: none;
   }
 
   .news__grid {
@@ -2205,14 +2241,21 @@ ol {
   .partners {
     padding: 20px 0;
   }
+  .partner-logo {
+    aspect-ratio: 1.08 / 1;
+  }
   .partners__grid {
     /* Переключаем сетку на 2 колонки */
-    grid-template-columns: repeat(auto-fit, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .partner-logo {
     padding: 53px;
-    height: 200px; /* Уменьшаем высоту ячейки */
+  }
+  .partner-logo img {
+    filter: none; /* Делаем логотипы черно-белыми */
+    opacity: 1;
+
   }
 
   /* На мобильных убираем сложный 3D-эффект, оставляем только тень */
