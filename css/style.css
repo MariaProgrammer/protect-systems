@@ -2496,6 +2496,297 @@ ol {
 .contact-form {
   padding: 0 0 40px 0;
 }
+.contacts-hero {
+  padding: 28px 0;  
+  background: url('../img/contacts/contacts__bg.png'), #f6f6f6;   
+  background-position: right center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+/* ==================== CONTACTS SECTION (DESKTOP FIRST) ==================== */
+
+.contacts-section {
+  padding: 40px 0 0 0;
+  background-color: var(--color-white);
+}
+
+.contacts-section__grid {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start; /* Выравнивание по верху */
+}
+
+/* Левая колонка */
+.contacts-section__info {
+  flex: 1 1 40%; /* Занимает ~40% ширины */
+  min-width: 0;
+}
+
+.contacts-section__emblem {
+  width: 80px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.contacts-section__title {
+  font-family: var(--font-family);
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.contacts-section__address {
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-text);
+  margin-bottom: 55px;
+}
+.contacts-section__address a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-fast);
+}
+.contacts-section__address a:hover {
+    color: var(--color-red);
+}
+
+.contacts-section__cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+/* Стили для .socials и .btn у вас уже должны быть */
+
+
+/* Правая колонка */
+.contacts-section__map-wrapper {
+  flex: 1 1 60%;
+  min-width: 0;
+  
+  overflow: hidden;
+  
+}
+
+.contacts-section__map {
+  width: 100%;
+  height: 450px; /* Высота карты на десктопе */
+}
+/* Применяем фильтр к контейнеру */
+.contacts-section__map-wrapper.is-grayscale {
+  filter: grayscale(100%);
+  transition: filter 0.4s ease; /* Плавный переход к цвету */
+}
+
+/* При наведении курсора на карту, она становится цветной */
+.contacts-section__map-wrapper.is-grayscale:hover {
+  filter: grayscale(0%);
+}
+
+
+/* ==================== АДАПТИВНОСТЬ (DESKTOP FIRST) ==================== */
+
+/* Планшетная версия: уменьшаем отступы (до 991px) */
+@media (max-width: 992px) {
+  .contacts-section__grid {
+    gap: 30px;
+  }
+}
+
+/* Мобильная версия: все в одну колонку (до 767px) */
+@media (max-width: 768px) {
+  .contacts-section {
+    padding: 40px 0;
+  }
+  .contacts-section__grid {
+    flex-direction: column; /* Перестраиваем в колонку */
+  }
+  
+  .contacts-section__info {
+    /* На мобильном макете логотип и заголовок по центру */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contacts-section__map {
+    height: 350px; /* Уменьшаем высоту карты на мобильных */
+  }
+}
+
+/* ==================== OFFICES SECTION (DESKTOP FIRST) ==================== */
+
+.offices {
+  padding: 40px 0 20px 0;
+  background-color: var(--color-white);
+}
+
+.offices__list {
+  display: flex;
+  /* Desktop First: элементы в ряд */
+  flex-direction: row;
+  flex-wrap: wrap; /* Позволит переноситься на новые строки, если карточек будет больше двух */
+  gap: 40px; /* Отступ между карточками */
+}
+
+/* Карточка офиса */
+.office-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start; /* Выравнивание по верху */
+  
+  /* Каждая карточка занимает равное пространство */
+  flex: 1 1 400px; /* Базовая ширина 400px, может расти и сжиматься */
+  min-width: 0;
+}
+
+.office-card__emblem {
+  width: auto;
+  height: 78px;
+  flex-shrink: 0; /* Герб не будет сжиматься */
+}
+
+.office-card__title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text);
+  margin-bottom: 20px;
+}
+
+.office-card__address {
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-text);
+}
+
+.office-card__address a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.office-card__address a:hover {
+  color: var(--color-red);
+}
+
+/* ==================== REQUISITES SECTION (DESKTOP FIRST) ==================== */
+
+.requisites {
+  padding: 40px 0;
+  background-color: #F6F6F6; /* Светло-серый фон секции */
+}
+
+.requisites__title {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.requisites__grid {
+  display: grid;
+  /* Desktop First: 2 равные колонки */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px; /* Отступ между колонками */
+}
+
+.requisites__list {
+  display: flex;
+  flex-direction: column;  
+}
+
+.requisites__list div {
+  line-height: 1.7;
+}
+
+.requisites__list dt {
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+.requisites__list dd {
+  margin-left: 0; /* Сбрасываем стандартный отступ у dd */
+  color: var(--color-text);
+}
+
+/* Ссылка для скачивания */
+.download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 30px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-red);
+  transition: opacity 0.3s ease;
+}
+
+.download-link:hover {
+  opacity: 0.8;
+}
+
+.download-link__icon {
+  width: 24px;
+  height: auto;
+}
+
+
+/* ==================== АДАПТИВНОСТЬ (DESKTOP FIRST) ==================== */
+
+/* Планшетная версия: уменьшаем отступы (до 991px) */
+@media (max-width: 992px) {
+  .requisites__grid {
+    gap: 30px;
+  }
+}
+
+/* Мобильная версия: 1 колонка (экраны до 767px) */
+@media (max-width: 768px) {
+  .requisites {
+    padding: 20px 0;
+  }
+
+  .requisites__grid {
+    /* Перестраиваем в одну колонку */
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+
+
+/* ==================== АДАПТИВНОСТЬ (DESKTOP FIRST) ==================== */
+
+/* Мобильная версия: 1 колонка (экраны до 767px) */
+@media (max-width: 992px) {
+  .offices__list {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .offices {
+    padding: 20px 0;
+  }
+
+  .offices__list {
+    /* Перестраиваем в колонку */
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* На мобильном макете элементы внутри карточки выровнены по центру */
+  .office-card {
+    flex-direction: column;
+    flex-basis: auto;     
+  }
+}
+
+
 
 
 /* ==================== АДАПТИВНОСТЬ (DESKTOP FIRST) ==================== */
