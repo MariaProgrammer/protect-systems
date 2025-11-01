@@ -630,7 +630,7 @@ ol {
 
 /* Левая колонка */
 .dropdown-menu__left {
-  flex: 0 0 280px;
+  flex: 0 0 340px;
   display: flex;
   flex-direction: column;
   /* background-color убран, так как он теперь на родителе */
@@ -663,6 +663,12 @@ ol {
   height: 20px;
   fill: currentColor;
   flex-shrink: 0;
+}
+.dropdown-menu__item-text span {
+  font-size: 16px;
+  line-height: 0.9;
+  font-family: var(--font-family);
+  font-weight: 700;
 }
 
 .dropdown-menu__item-arrow {
@@ -1910,62 +1916,6 @@ ol {
   text-decoration: none;
 }
 
-/* ==================== PAGE HERO SECTION (DESKTOP FIRST) ==================== */
-
-.page-hero {
-  position: relative; /* Необходимо для позиционирования оверлея */
-  padding: 28px 0;
-  background-color: #f0f0f0; /* Цвет на случай, если фон-картинка не загрузится */
-  background-image: url('../img/index/hero/hero__bg.png'); /* Укажите путь к вашему фону */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-/* Полупрозрачный белый оверлей, который "приглушает" фон */
-.page-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0; /* Растягивает на весь блок (top: 0; right: 0; bottom: 0; left: 0;) */
-  background-color: rgba(255, 255, 255, 0.85);
-  z-index: 1; /* Оверлей находится под контентом */
-}
-
-/* Контент должен быть поверх оверлея */
-.page-hero .container {
-  position: relative;
-  z-index: 2;
-}
-.page-hero__title {
-  margin: 0;
-}
-
-/* Хлебные крошки */
-.breadcrumbs {
-  margin-bottom: 20px;
-}
-
-.breadcrumbs__list {
-  display: flex;
-  flex-wrap: wrap; /* Позволяет крошкам переноситься, если они не помещаются в одну строку */
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 14px;
-}
-
-.breadcrumbs__item {
-  display: flex;
-  align-items: center;
-}
-
-/* Разделитель "/" добавляется через CSS */
-.breadcrumbs__item:not(:last-child)::after {
-  content: '/';
-}
-
-
-
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 1200px) {
   .container {
@@ -2327,3 +2277,297 @@ ol {
     align-items: flex-start;
   }
 }
+
+/* ==================== PAGE SERVICES ==================== */
+/* Хлебные крошки */
+.breadcrumbs {
+  margin-bottom: 20px;
+}
+
+.breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap; /* Позволяет крошкам переноситься, если они не помещаются в одну строку */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.breadcrumbs__item {
+  display: flex;
+  align-items: center;
+}
+
+/* Разделитель "/" добавляется через CSS */
+.breadcrumbs__item:not(:last-child)::after {
+  content: '/';
+}
+
+.page-hero {
+  
+  padding: 28px 0;  
+  background: url('../img/index/hero/hero__bg.png'), #f6f6f6; 
+  
+  background-position: right center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+/* Контент должен быть поверх оверлея */
+.page-hero .container {
+  position: relative;
+  z-index: 2;
+}
+.page-hero__title {
+  margin: 0;
+}
+
+
+
+/* ==================== PAGE CONTENT SECTION (DESKTOP FIRST) ==================== */
+
+.page-content {
+  padding: 40px 0;
+  background-color: var(--color-white);
+}
+
+.content-block {
+  /* Вертикальные отступы между основными блоками (row, text-full) */
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Стили для строки "текст + картинка" */
+.content-block__row {
+  display: flex;
+  gap: 50px;
+  
+}
+
+/* Модификатор для реверса колонок */
+.content-block__row--reverse {
+  flex-direction: row-reverse;
+}
+
+.content-block__text,
+.content-block__image {
+  flex: 1 1 50%; /* Каждая колонка занимает 50% */
+  min-width: 0;
+}
+.block-image__left {
+  max-width: 360px;
+  height: auto;
+}
+
+.content-block__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Общие стили для текстового контента */
+.content-block__text p,
+.content-block__text-full p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+.content-block__text p:not(:last-child),
+.content-block__text-full p:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+
+/* Стили для заголовков */
+.content-block__title {
+  margin-bottom: 20px;
+  
+}
+.content-block__title--h2 {
+  font-family: var(--font-family);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1;
+}
+.content-block__title--h3 {
+  font-size: 28px;
+  font-weight: 600;
+}
+.content-block__title--h4 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Стили для списка */
+.content-block__list {
+  list-style: none;
+  padding-left: 20px; /* Отступ для кастомных маркеров */
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 40px;
+}
+
+.content-block__list li {
+  position: relative;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+/* Кастомный маркер-кружок для списка */
+.content-block__list li::before {
+  content: '•';
+  position: absolute;
+  left: -20px;
+  top: 6px;
+  color: var(--color-red);
+  font-size: 26px;
+  line-height: 1;
+}
+
+/* ==================== TABLE SECTION (DESKTOP FIRST) ==================== */
+
+.table-section {
+  padding: 20px 0;
+  background-color: var(--color-white);
+}
+
+.table-section__title {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+/* Обертка для таблицы */
+.table-wrapper {
+  width: 100%;
+  /* По умолчанию прокрутки нет */
+  overflow-x: auto; 
+}
+
+/* Стили самой таблицы */
+.data-table {
+  width: 100%;
+  border-collapse: collapse; /* Убираем двойные рамки между ячейками */
+  min-width: 800px; /* Минимальная ширина, чтобы на мобильных появилась прокрутка */
+}
+
+/* Стили для всех ячеек (заголовков и данных) */
+.data-table th,
+.data-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid #E0E0E0; /* Горизонтальная линия под каждой строкой */
+  border-right: 1px solid #E0E0E0; /* Вертикальная линия между ячейками */
+  white-space: nowrap; /* Запрещаем перенос текста на новую строку */
+}
+
+/* Убираем правую границу у последней ячейки в ряду */
+.data-table th:last-child,
+.data-table td:last-child {
+  border-right: none;
+}
+
+/* Стили для заголовков (thead) */
+.data-table thead th {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 16px;
+  border-top: 1px solid var(--color-dark); /* Рамка сверху */
+}
+
+/* Стили для ячеек данных (tbody) */
+.data-table tbody td {
+  font-size: 16px;
+  color: var(--color-text);
+  background-color: #F9F9F9;
+}
+
+/* "Зебра": чередование цвета строк для лучшей читаемости */
+.data-table tbody tr:nth-child(even) td {
+  background-color: #FFFFFF;
+}
+.contact-form {
+  padding: 0 0 40px 0;
+}
+
+
+/* ==================== АДАПТИВНОСТЬ (DESKTOP FIRST) ==================== */
+@media (max-width: 1200px) {
+  .table-section {
+    overflow-y: auto;
+  }
+}
+@media (max-width: 992px) {
+  .content-block__list {
+    margin-left: 0;
+  }
+  .content-block__text-full {
+    display: none;
+  }
+}
+/* Мобильная версия (экраны до 767px) */
+@media (max-width: 768px) {
+  .table-section {
+    padding: 20px 0;
+  }
+
+  .table-section__title {
+    font-size: 28px;
+  }
+
+  /* Стилизуем скроллбар для лучшего вида на мобильных (опционально) */
+  .table-wrapper::-webkit-scrollbar {
+    height: 6px;
+  }
+  .table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .table-wrapper::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+  }
+  .table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+  }
+}
+
+
+/* ==================== АДАПТИВНОСТЬ (DESKTOP FIRST) ==================== */
+
+/* Планшетная версия: уменьшаем отступы (до 991px) */
+@media (max-width: 991.98px) {
+  .content-block__row {
+    gap: 30px;
+  }
+}
+
+/* Мобильная версия: все в одну колонку (до 767px) */
+@media (max-width: 767.98px) {
+  .page-content {
+    padding: 40px 0;
+  }
+
+  .content-block {
+    gap: 40px;
+  }
+
+  /* Перестраиваем строки в колонки */
+  .content-block__row,
+  .content-block__row--reverse {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Уменьшаем размеры заголовков на мобильных */
+  .content-block__title--h2 { font-size: 28px; }
+  .content-block__title--h3 { font-size: 24px; }
+  .content-block__title--h4 { font-size: 20px; }
+}
+
