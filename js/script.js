@@ -49,7 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+    const body = document.body;
+    const pageOverlay = document.querySelector('.page-overlay');
+    const nav = document.querySelector('.nav');
 
+    // ==================== ОБЩАЯ ЛОГИКА ОВЕРЛЕЯ ====================
+    const lockPage = () => {
+        body.classList.add('page--lock');
+    };
+    const unlockPage = () => {
+        body.classList.remove('page--lock');
+    };
 
 
 
@@ -153,8 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- 2. ЛОГИКА РАБОТЫ МЕНЮ ---
-    const nav = document.querySelector('.nav');
+    // --- 2. ЛОГИКА РАБОТЫ МЕНЮ ---    
     const dropdownItems = document.querySelectorAll('.nav__item--has-dropdown');
     let activeDropdown = null;
     let leaveTimeout;
@@ -289,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==================== MODAL LOGIC ====================
     const openModalButtons = document.querySelectorAll('[data-modal-open]');
     const closeModalButtons = document.querySelectorAll('[data-modal-close]');
-    const body = document.body;
+    
 
     const openModal = (modalId) => {
         const modal = document.getElementById(modalId);
@@ -351,12 +360,14 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileNav.classList.toggle('is-open');
         burgerClose.classList.toggle('is-active');
         body.classList.toggle('body--modal-open');
+        lockPage();
     });
     const closeMenu = () => {
         burgerBtn.classList.remove('is-active');
         mobileNav.classList.remove('is-open');
         burgerClose.classList.remove('is-active');
         body.classList.remove('body--modal-open');
+        unlockPage();
     };
 
     burgerClose.addEventListener('click', () => {
@@ -466,10 +477,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-     Fancybox.bind("[data-fancybox]", {
-        // Здесь можно добавить кастомные опции, если нужно
-        // Например:
-        // loop: true, // Бесконечная прокрутка галереи
-    });
+     if (typeof Fancybox !== 'undefined') { // Проверка, что Fancybox загрузился
+        Fancybox.bind("[data-fancybox]", {});
+    }
 
 });

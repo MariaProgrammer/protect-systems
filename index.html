@@ -579,23 +579,23 @@
       <nav class="nav">
         <div class="container">
           <ul class="nav__list">
-            <li class="nav__item"><a href="#" class="nav__link">About</a></li>
+            <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
             <li class="nav__item">
-              <a href="#" class="nav__link">Licenses</a>
+              <a href="license.html" class="nav__link">Licenses</a>
             </li>
 
             <li
               class="nav__item nav__item--has-dropdown"
               data-menu-id="services"
             >
-              <a href="/services" class="nav__link">Services</a>
+              <a href="services.html" class="nav__link">Services</a>
             </li>
 
             <li
               class="nav__item"
               data-menu-id="documentation"
             >
-              <a href="/docs" class="nav__link">Documentation</a>
+              <a href="objects.html" class="nav__link">Documentation</a>
             </li>
 
             <li class="nav__item"><a href="#" class="nav__link">Shop</a></li>
@@ -604,11 +604,11 @@
               class="nav__item"
               data-menu-id="articles"
             >
-              <a href="/articles" class="nav__link">Articles</a>
+              <a href="#articles" class="nav__link">Articles</a>
             </li>
 
             <li class="nav__item">
-              <a href="#" class="nav__link">Contacts</a>
+              <a href="contacts.html" class="nav__link">Contacts</a>
             </li>
           </ul>
         </div>
@@ -623,22 +623,22 @@
           <span class="burger__line"></span>
         </button>
         <ul class="nav__list">
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
+          <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
           <li class="nav__item">
-            <a href="#" class="nav__link">Licenses</a>
+            <a href="license.html" class="nav__link">Licenses</a>
           </li>
-          <li class="nav__item nav__item--has-dropdown is-current">
-            <a href="#" class="nav__link">Services</a>
+          <li class="nav__item nav__item--has-dropdown">
+            <a href="services.html" class="nav__link">Services</a>
           </li>
           <li class="nav__item">
-            <a href="#" class="nav__link">Documentation</a>
+            <a href="objects.html" class="nav__link">Documentation</a>
           </li>
           <li class="nav__item"><a href="#" class="nav__link">Shop</a></li>
           <li class="nav__item">
-            <a href="#" class="nav__link">Articles</a>
+            <a href="#articles" class="nav__link">Articles</a>
           </li>
           <li class="nav__item">
-            <a href="#" class="nav__link">Contacts</a>
+            <a href="contacts.html" class="nav__link">Contacts</a>
           </li>
         </ul>
         <div class="mobile-nav__contacts">
@@ -1194,7 +1194,7 @@
           </div>
         </div>
       </section>
-      <section class="about-company">
+      <section class="about-company" id="about">
         <div class="container">
           <div class="about-company__header">
             <h2 class="section-title about-company__title">
@@ -1498,7 +1498,7 @@
 
         </div>
       </section>
-      <section class="cta-form-section">
+      <section class="cta-form-section" id="contacts">
         <div class="container">
           <div class="cta-form__grid">
             <div class="cta-form__info">
@@ -1568,7 +1568,7 @@
           </div>
         </div>
       </section>
-      <section class="news">
+      <section class="news" id="articles">
         <div class="container">
           <h2 class="section-title news__title">Новости</h2>
           <div class="news__grid">
@@ -1687,13 +1687,13 @@
               <nav class="footer-nav">
                 <ul class="footer-nav__list">
                   <li class="footer-nav__item">
-                    <a href="#" class="footer-nav__link">О компании</a>
+                    <a href="#about" class="footer-nav__link">О компании</a>
                   </li>
                   <li class="footer-nav__item">
-                    <a href="#" class="footer-nav__link">Лицензии</a>
+                    <a href="license.html" class="footer-nav__link">Лицензии</a>
                   </li>
                   <li class="footer-nav__item">
-                    <a href="#" class="footer-nav__link">Документация</a>
+                    <a href="objects.html" class="footer-nav__link">Документация</a>
                   </li>
                 </ul>
               </nav>
@@ -1703,10 +1703,10 @@
                     <a href="#" class="footer-nav__link">Магазин</a>
                   </li>
                   <li class="footer-nav__item">
-                    <a href="#" class="footer-nav__link">Статьи</a>
+                    <a href="#articles" class="footer-nav__link">Статьи</a>
                   </li>
                   <li class="footer-nav__item">
-                    <a href="#" class="footer-nav__link">Контакты</a>
+                    <a href="contacts.html" class="footer-nav__link">Контакты</a>
                   </li>
                 </ul>
               </nav>
@@ -1714,7 +1714,7 @@
                 <nav class="footer-nav footer-nav--services">
                   <ul class="footer-nav__list">
                     <li class="footer-nav__item">
-                      <h3 class="footer-nav__title">Услуги</h3>
+                      <a href="services.html" class="footer-nav__title">Услуги</a>
                     </li>
                   </ul>
                 </nav>
@@ -1818,6 +1818,7 @@
     <div class="mobile-nav"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
 
     <script src="js/script.js"></script>
   </body>
