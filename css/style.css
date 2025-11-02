@@ -369,7 +369,7 @@ ol {
   right: -100%;
   width: 100%;
   max-width: 320px;
-  height: 100vh;
+  height: auto;
   z-index: 1001; /* z-index ниже чем у активного бургера */
   background-color: var(--color-dark);
   padding: 50px 0 40px;
