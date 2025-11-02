@@ -483,9 +483,9 @@ ol {
 }
 
 /* Также этот класс будет блокировать прокрутку */
-body.page--lock {
+/* body.page--lock {
     overflow: hidden;
-}
+} */
 
 /* АДАПТИВНОСТЬ */
 
@@ -630,46 +630,56 @@ body.page--lock {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0; /* Выравнивается по левому краю родительского li */
+  left: 0;
   width: max-content;
+  /* background-color: #8e1a1a; */
+  z-index: 1001; /* Выше оверлея */
   
-  background-color: #8e1a1a; /* Общий фон */
-  z-index: -1;
+  /* Начальное состояние (скрыто) */
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-20px);
-  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  transform: translateY(10px);
+  pointer-events: none; /* Нельзя взаимодействовать, пока скрыто */
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.dropdown-menu.is-visible {
+/* Состояние при открытии */
+.nav__item.is-active .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-  z-index: 1001;;
+  pointer-events: auto;
 }
 
 .dropdown-menu__container {
-  display: inline-flex;
+  display: flex;
+  align-items: flex-start; /* Колонки разной высоты */
 }
 
 /* Левая колонка */
 .dropdown-menu__left {
-  flex: 0 0 340px;
+  background: var(--color-red);
+  flex: 1 1 auto; /* Ширина левой колонки */
+ 
+  max-width: 340px;
+  
   display: flex;
   flex-direction: column;
-  /* background-color убран, так как он теперь на родителе */
 }
 
 .dropdown-menu__item {
   display: flex;
   justify-content: space-between;
-  align-items: stretch; /* Растягиваем элементы на всю высоту */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  align-items: center;
+  padding: 12px 15px;
+  color: var(--color-white);
   cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color var(--transition-fast);
 }
 .dropdown-menu__item:hover,
 .dropdown-menu__item.is-active {
-  background-color: var(--color-red);
+  background-color: var(--color-red-hover);
 }
 
 .dropdown-menu__item-text {
@@ -677,7 +687,7 @@ body.page--lock {
   align-items: center;
   gap: 10px;
   font-weight: 500;
-  padding: 12px 15px;
+  /* padding: 12px 15px; */
   color: var(--color-white);
   text-decoration: none;
   flex-grow: 1;
@@ -710,50 +720,79 @@ body.page--lock {
   transform: rotate(90deg);
 }
 
+
+
+
 /* Правая колонка */
 .dropdown-menu__right {
   background-color: var(--color-white);
   color: var(--color-dark);
-  padding: 20px 30px;
-  /* width: 520px; */
-  width: 300px;
-  position: relative;
-  overflow: hidden;
+  padding: 10px;
+  flex: 1 1 auto; /* Ширина левой колонки */
+ 
+  max-width: 500px;
 }
 
 .submenu {
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  width: calc(100% - 60px);
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: none; /* Скрываем все подменю по умолчанию */
 }
 .submenu.is-active {
-  opacity: 1;
-  transform: translateX(0);
+  display: block;
+  
 }
 
 .submenu__title {
-  font-size: 18px;
+  font-family: var(--font-family);
+  font-size: 16px;
   font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 .submenu__list {
-  list-style: none;
+  list-style: disc;
   padding: 0;
   margin: 0;
+  padding-bottom: 10px;  
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  
+  
+}
+.submenu__line {
+  border-bottom: 1px solid var( --color-text-light);
+  margin-bottom: 10px;
+}
+.submenu__list li {
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
 }
 .submenu__link {
   color: var(--color-text);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
   text-decoration: none;
+  margin: 0;
+  padding: 0;
 }
 .submenu__link:hover {
   color: var(--color-red);
+}
+
+/* Оверлей */
+.page-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(40, 40, 40, 0.6);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.page--lock .page-overlay {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* ==================== HERO SLIDER  ==================== */
@@ -1952,6 +1991,7 @@ body.page--lock {
   .container {
     max-width: 992px;
   }
+  
   .services__grid {
     /* Переключаем сетку на 2 колонки */
     grid-template-columns: repeat(2, 1fr);
@@ -1977,6 +2017,9 @@ body.page--lock {
 @media (max-width: 992px) {
   .container {
     max-width: 100%;
+  }
+  .dropdown-menu {
+    width: auto;
   }
   .section-title {
     font-size: 28px;
