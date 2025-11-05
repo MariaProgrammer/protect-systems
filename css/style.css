@@ -731,12 +731,18 @@ ol {
 
 /* Правая колонка */
 .dropdown-menu__right {
-  background-color: var(--color-white);
+  /* Убираем все визуальные стили отсюда */
   color: var(--color-dark);
-  padding: 10px;
-  flex: 1 1 auto; /* Ширина левой колонки */
- 
+  flex: 1 1 auto;
+  min-width: 0;
   max-width: 500px;
+  position: relative;
+}
+.dropdown-menu__right .submenu {
+  background-color: var(--color-white);
+  padding: 10px;
+ 
+  
 }
 
 .submenu {
@@ -1946,12 +1952,20 @@ ol {
   flex-direction: column;
   gap: 12px;
 }
+.footer-nav__link-sm {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;  
+  text-decoration: none;
+  color: var(--color-white);
+  transition: color var(--transition-fast);
+}
 
 .footer-nav__link {
   font-family: var(--font-family);
   font-size: 16px;
   font-weight: 700;
-  /* text-transform: uppercase; */
+  text-transform: uppercase;
   text-decoration: none;
   color: var(--color-white);
   transition: color var(--transition-fast);
@@ -2596,7 +2610,7 @@ ol {
   background-color: #FFFFFF;
 }
 .contact-form {
-  padding: 0 0 40px 0;
+  padding: 40px 0;
 }
 .contacts-hero {
   padding: 28px 0;  
