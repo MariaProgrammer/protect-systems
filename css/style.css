@@ -536,13 +536,19 @@ ol {
     align-items: center;
   }
   .phone-block__number {
-    font-size: 20px;
+    font-size: 18px;
   }
   .phone-block__desc {
     text-align: center;
+    font-size: 12px;
   }
   .header__main-bottom {
     gap: 10px;
+    justify-content: space-between;
+  }
+  .socials__link {
+    width: 30px;
+    height: auto;
   }
 }
 
@@ -2344,12 +2350,34 @@ ol {
     flex-direction: column;
     gap: 30px;
   }
+  .header__btn {
+    display: block;
+    font-size: 10px;
+    padding: 5px 10px;
+  }
 }
 @media (max-width: 460px) {
   .header__main-bottom {
-    flex-direction: column;
-    align-items: flex-start;
+    gap: 8px;
   }
+  
+  
+}
+@media (max-width: 400px) {
+  .phone-block__number {
+    font-size: 12px;
+    }
+  .phone-block__desc {
+    font-size: 8px;
+  }
+  .socials__link {    
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -5px;
+  }
+  
+
 }
 
 /* ==================== PAGE SERVICES ==================== */
